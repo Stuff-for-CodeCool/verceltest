@@ -8,7 +8,7 @@ const entryRoutes = require("./routes/entries.routes");
 
 const PORT = process.env.PORT;
 
-express()
+module.exports = express()
     .use(cors())
     .use(express.urlencoded({ extended: false }))
     .use(express.json())
