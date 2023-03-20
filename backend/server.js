@@ -14,6 +14,7 @@ express()
     .use(express.json())
     .use(express.static(join(__dirname + "/../frontend/dist/")))
     .get("/", (req, res) => {
+        res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
         res.sendFile(join(__dirname + "/../frontend/dist/index.html"));
     })
     .use("/api/entries/", entryRoutes)

@@ -7,6 +7,10 @@ const Entries = require("../database/entry.model");
 const connection = connect(process.env.MONGO_URL);
 
 module.exports = Router()
+    .use("/", (req, res, next) => {
+        res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
+        next();
+    })
     .get("/populate", async (req, res) => {
         await Entries.deleteMany({});
 
